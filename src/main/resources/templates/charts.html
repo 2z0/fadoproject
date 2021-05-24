@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>fado home</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/data.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">FADO</a>
+        <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+        <!-- Navbar-->
+        <ul class="navbar-nav ml-auto ml-md-0">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="#">Dark mode</a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <form action="charts.html" class="search_form">
+                            <label for="sel1">상장구분 (코스피, 코스닥) :</label>
+                            <select class="form-control" id="sel1">
+                                <option>코스피</option>
+                                <option>코스닥</option>
+                            </select><br>
+                            <label for="sel1">업종 :</label>
+                            <select class="form-control" id="sel1">
+                                <option>생산/제조</option>
+                                <option>IT</option>
+                                <option>무역</option>
+                                <option>식품</option>
+                            </select><br>
+                            <label for="sel1">종목명 or 종목코드 :</label>
+                            <input class="form-control-plaintext" id="myInput" type="text" placeholder="Search..">
+                            <input type="submit" class="form-control-submit"/>
+
+                            <br></form>
+                            <div class="layoutTableBody">
+                                <table class="form-control-table table-dark table-hover">
+                                    <thead>
+                                      <tr>
+                                        <th>종목명</th>
+                                        <th>종목코드</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="myTable">
+                                  <tr>
+                                    <td>두산</td>
+                                    <td>000150</td>
+                                </tr>
+                                <tr>
+                                    <td>삼성제약</td>
+                                    <td>001360</td>
+                                </tr>
+                                <tr>
+                                    <td>빙그레</td>
+                                    <td>005180</td>
+                                </tr>
+                                <tr>
+                                    <td>한국전력공사</td>
+                                    <td>015760</td>
+                                </tr>
+                                <tr>
+                                    <td>코웨이</td>
+                                    <td>021240</td>
+                                </tr>
+                                <tr>
+                                    <td>한글과컴퓨터</td>
+                                    <td>030520</td>
+                                </tr>
+                                <tr>
+                                    <td>LG디스플레이</td>
+                                    <td>034220</td>
+                                </tr> 
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="sb-sidenav-footer">
+                <div class="small">Logged in as:</div>
+                Start Bootstrap
+            </div>
+        </nav>
+    </div>
+    <!-------------------------------- CONTENT  -------------------------------->
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid">
+                <h1 class="mt-4">
+                    <a href="group.html" data-toggle="tooltip" data-placement="bottom" title="그룹으로 이동"><i class="fas fa-microchip"></i></a>
+                    삼성전자(005930)</h1>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Candle Chart Example
+                    </div>
+                    <div id="myCandleChart" style="height: 400px; min-width: 310px"></div>
+
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                PER/PBR/ROE Chart Example
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="PER = 현재가 / EPS"><i class="fas fa-question-circle"></i></a>
+                            </div>
+                            <div id="myLineChart"></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                Spider Web Example
+                            </div>
+                            <div id="MySpiderWeb"></div>
+                            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Bar Chart Example
+                    </div>
+                    <div id="myBarChart"></div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        News Example
+                    </div>
+                    <div class="card-body">
+                        <a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=101&oid=215&aid=0000958569" target="_blank" title="투자자 40% 삼성전자 주주…&quot;배당,상승기대감 반영&quot;">투자자 40% <mark>삼성전자</mark> 주주…"배당,상승기대감 반영"</a><br>
+                        <a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=101&oid=018&aid=0004931681" class="news_tit" title="코로나에 매출 1兆클럽 줄었다…삼성전자, 20년 연속 부동의 1위">코로나에 매출 1兆클럽 줄었다…<mark>삼성전자</mark>, 20년 연속 부동의 1위</a>
+
+                    </div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header">
+                        Stacked Bar Chart Example
+                    </div>
+                    <div id="myStackedBarChart"></div>
+                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                </div>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2020</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+<script src="/assets/demo/chart-candle-demo.js"></script>
+<script src="/assets/demo/chart-bar-demo.js"></script>
+<script src="/assets/demo/chart-stacked-bar-demo.js"></script>
+<script src="/assets/demo/chart-line-demo.js"></script>
+<script src="/assets/demo/spider-web-demo.js"></script>
+
+</body>
+</html>
