@@ -12,20 +12,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 
 @Controller
 public class HomeController {
     @Autowired
-    CompanyService companyService;
+    CompanyService service;
 
     @GetMapping("/")
-    public String sayHello(){
+    public String viewHomePage(Model model){
+        List<CompanyInfo> companyList = service.listAll();
+        model.addAttribute("companyList", companyList);
+
         return "index";
     }
 
     @RequestMapping("/charts/{code}")
     public String showCompanyChart(@PathVariable String code, Model model){
-        CompanyInfo companyInfo = companyService.getCompanyByCode(code);
+        CompanyInfo companyInfo = service.getCompanyByCode(code);
         model.addAttribute("companyInfo",companyInfo);
         return "charts";
     }

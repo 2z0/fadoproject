@@ -13,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
 class FadoprojectApplicationTests {
-    @Autowired
-    private DemoRepository demoRepository;
-    @Test
-    void contextLoads() {
-        CompanyInfo companyInfo = demoRepository.findByCode("000020");
-        assertEquals("000020", companyInfo.getCode());
-    }
+//    @Autowired
+//    private DemoRepository demoRepository;
+//    @Test
+//    void contextLoads() {
+//        CompanyInfo companyInfo = demoRepository.findByCode("000020");
+//        assertEquals("000020", companyInfo.getCode());
+//    }
 
 }
