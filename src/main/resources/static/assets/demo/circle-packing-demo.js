@@ -1,6 +1,4 @@
 Highcharts.chart('myCirclePacking', {
-    colors: ["#e85a71","#4ea1d3","#454552","#d8e9ef"
-    ],
     chart: {
         type: 'packedbubble',
         height: '60%',
