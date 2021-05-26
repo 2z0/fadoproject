@@ -15,17 +15,19 @@ import java.sql.Date;
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "company_info")
-public class CompanyInfo {
+@Table(name = "company_siga")
+public class CompanySiga {
 
     @Id
-    private String code;
-    private String company;
-    private String group;
+    String code;
+    String company;
+    long price;
+    long siga;
 
-    public CompanyInfo(String code, String company,String group){
+    public CompanySiga(String code, String company, long price, long siga) {
         this.code = code;
         this.company = company;
-        this.group = group;
+        this.price = price;
+        this.siga = siga;
     }
 }

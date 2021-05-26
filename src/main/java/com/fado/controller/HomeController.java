@@ -1,20 +1,20 @@
 package com.fado.controller;
 
 import com.fado.entitiy.CompanyInfo;
-import com.fado.entitiy.DailyPrice;
+import com.fado.entitiy.CompanySiga;
 import com.fado.entitiy.TestEntity;
 import com.fado.service.CompanyService;
-import com.fado.service.PriceService;
+import com.fado.service.GroupService;
+import com.fado.service.SigaService;
 import com.fado.service.TestService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,8 +24,9 @@ public class HomeController {
     CompanyService companyService;
 
     @Autowired
-    PriceService priceService;
-
+    SigaService sigaService;
+    @Autowired
+    GroupService groupService;
     @Autowired
     TestService testService;
 
@@ -34,9 +35,48 @@ public class HomeController {
         return "index";
     }
 
+    @RequestMapping("/circlepacking")
+    @ResponseBody
+    public String getDataForCirclePacking() {
+        List<String> groupNameList = groupService.listAllGroupName();
+        JsonObject json = new JsonObject();
+        JsonArray jsonArray = new JsonArray();
+
+        groupNameList.forEach(groupName -> {
+            List<CompanyInfo> companyList = new ArrayList<>();
+            JsonArray jsonGroupData = new JsonArray();
+            JsonObject jsonGroup = new JsonObject();
+            companyList=companyService.getCompanyGroup(groupName);
+            companyList.forEach(company->{
+                CompanySiga companySiga = sigaService.getSigaByName(company.getCompany());
+                JsonObject jsonCompany = new JsonObject();
+                jsonCompany.addProperty("name",companySiga.getCompany());
+                jsonCompany.addProperty("value",companySiga.getSiga()/1000000000);
+                jsonGroupData.add(jsonCompany);
+            });
+            jsonGroup.addProperty("name",groupName);
+            jsonGroup.add("data",jsonGroupData);
+            jsonArray.add(jsonGroup);
+        });
+
+        json.add("circlePacking",jsonArray);
+        return json.toString();
+    }
+
+
+
+
+
+
+
+
     @RequestMapping("/charts/{code}")
     public String viewCompanyChart(@PathVariable String code, Model model){
         CompanyInfo companyInfo = companyService.getCompanyByCode(code);
+        JsonArray jsonGroup = new JsonArray();
+        JsonObject jsonCompany = new JsonObject();
+        JsonObject json = new JsonObject();
+
         model.addAttribute("companyInfo",companyInfo);
         return "charts";
     }
@@ -49,11 +89,14 @@ public class HomeController {
 
 
 
+
+
+
     //EXAMPLE
     @RequestMapping("/list")
     public String showCompanyChart(Model model){
-        List<TestEntity> testData = testService.listAll();
-        model.addAttribute("testData",testData);
+        List<String> groupNameList = groupService.listAllGroupName();
+        model.addAttribute("groupNameList",groupNameList);
         return "list";
     }
 

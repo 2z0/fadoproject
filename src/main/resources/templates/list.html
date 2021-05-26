@@ -13,14 +13,12 @@
   <table border="1" cellpadding="10">
     <thead>
     <tr>
-      <th>Company</th>
-      <th>volume</th>
+      <th>group</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each= "td : ${testData}">
-      <td th:text="${td.company}">Code</td>
-      <td th:text="${td.volume}">Brand</td>
+    <tr th:each= "gnl : ${groupNameList}">
+      <td th:text="${gnl}">Code</td>
     </tr>
     </tbody>
   </table>

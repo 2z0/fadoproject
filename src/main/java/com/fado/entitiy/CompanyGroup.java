@@ -8,24 +8,20 @@ import lombok.ToString;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Date;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "company_info")
-public class CompanyInfo {
-
+@Table(name = "company_group")
+public class CompanyGroup {
     @Id
-    private String code;
-    private String company;
+    private int id;
     private String group;
 
-    public CompanyInfo(String code, String company,String group){
-        this.code = code;
-        this.company = company;
+    public CompanyGroup(int id, String group) {
+        this.id = id;
         this.group = group;
     }
 }
