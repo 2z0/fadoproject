@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -16,20 +15,19 @@ import java.sql.Date;
 @ToString
 @NoArgsConstructor
 @Entity
-@Table(name = "company_info")
-public class CompanyInfo {
+@Table(name = "company_siga")
+public class CompanySiga {
 
     @Id
-    @Column(name="stock_code")
-    private String code;
-    @Column(name="corp_name")
-    private String company;
-    @Column(name="corp_group")
-    private String group;
+    String code;
+    String company;
+    long price;
+    long siga;
 
-    public CompanyInfo(String code, String company,String group){
+    public CompanySiga(String code, String company, long price, long siga) {
         this.code = code;
         this.company = company;
-        this.group = group;
+        this.price = price;
+        this.siga = siga;
     }
 }

@@ -2,18 +2,18 @@ package com.fado.service;
 
 
 import com.fado.entitiy.CompanyInfo;
-import com.fado.repository.DemoRepository;
+import com.fado.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional
+
 @Service
 public class CompanyService {
     @Autowired
-    private DemoRepository repo;
+    private CompanyRepository repo;
 
     public CompanyInfo getCompanyByCode(String code) {
         return repo.findByCode(code);
@@ -22,4 +22,8 @@ public class CompanyService {
         return repo.findByCode(name);
     }
     public List<CompanyInfo> listAll() { return repo.findAll();}
+    public List<CompanyInfo> getCompanyGroup(String group) {
+        return repo.findByGroup(group);
+    }
+
 }
