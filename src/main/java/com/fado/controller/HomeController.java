@@ -63,13 +63,6 @@ public class HomeController {
         return json.toString();
     }
 
-
-
-
-
-
-
-
     @RequestMapping("/charts/{code}")
     public String viewCompanyChart(@PathVariable String code, Model model){
         CompanyInfo companyInfo = companyService.getCompanyByCode(code);
