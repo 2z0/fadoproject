@@ -32,6 +32,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String viewHomePage(Model model){
+        CompanyInfo info = new CompanyInfo();
+        model.addAttribute("info", info);
         return "index";
     }
 
@@ -79,10 +81,12 @@ public class HomeController {
         return "group";
     }
 
-
-
-
-
+    @GetMapping("/search")
+    public String viewChartPage(@ModelAttribute("companyInfo")CompanyInfo info, Model model){
+        CompanyInfo companyInfo = companyService.getCompanyByCode(info.getCode());
+        model.addAttribute("companyInfo",companyInfo);
+        return "charts";
+    }
 
 
     //EXAMPLE

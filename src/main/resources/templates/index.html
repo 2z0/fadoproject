@@ -42,7 +42,7 @@
         <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div class="sb-sidenav-menu">
                 <div class="nav">
-                    <form action="/charts" class="search_form">
+                    <form action="#" th:object="${info}" th:action="@{/search}" class="search_form" method="get">
                         <label for="sel1">상장구분 (코스피, 코스닥) :</label>
                         <select class="form-control" id="sel1">
                             <option>코스피</option>
@@ -56,7 +56,7 @@
                             <option>식품</option>
                         </select><br>
                         <label for="sel1">종목명 or 종목코드 :</label>
-                        <input class="form-control-plaintext" id="myInput" type="text" placeholder="Search..">
+                        <input class="form-control-plaintext" id="myInput" type="text" placeholder="Search.." th:field="*{code}">
                         <input type="submit" class="form-control-submit"/>
                         <br></form>
                     <div class="layoutTableBody"></div>
