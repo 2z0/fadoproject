@@ -65,17 +65,6 @@ public class HomeController {
         return json.toString();
     }
 
-    @RequestMapping("/charts/{code}")
-    public String viewCompanyChart(@PathVariable String code, Model model){
-        CompanyInfo companyInfo = companyService.getCompanyByCode(code);
-        JsonArray jsonGroup = new JsonArray();
-        JsonObject jsonCompany = new JsonObject();
-        JsonObject json = new JsonObject();
-
-        model.addAttribute("companyInfo",companyInfo);
-        return "charts";
-    }
-
     @GetMapping("/group")
     public String viewGroupPage(){
         return "group";
@@ -83,15 +72,21 @@ public class HomeController {
 
     @GetMapping("/search")
     public String viewChartPage(@ModelAttribute("companyInfo")CompanyInfo info, Model model){
-        CompanyInfo companyInfo = companyService.getCompanyByCode(info.getCode());
+        CompanyInfo companyInfo = companyService.getCompanyByName(info.getCompany());
         model.addAttribute("companyInfo",companyInfo);
         return "charts";
     }
 
+    @RequestMapping("/autoComplete")
+    @ResponseBody
+    public List<String> getCompanyNameList() {
+        return companyService.getAllCompanyName();
+    }
 
     //EXAMPLE
     @RequestMapping("/list")
     public String showCompanyChart(Model model){
+
         List<String> groupNameList = groupService.listAllGroupName();
         model.addAttribute("groupNameList",groupNameList);
         return "list";
