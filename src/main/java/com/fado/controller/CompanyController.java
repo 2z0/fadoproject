@@ -2,6 +2,7 @@ package com.fado.controller;
 
 import com.fado.entitiy.CompanyInfo;
 import com.fado.entitiy.CompanyState;
+import com.fado.entitiy.FundamentalState;
 import com.fado.entitiy.TestEntity;
 import com.fado.service.*;
 import com.google.gson.JsonArray;
@@ -26,6 +27,8 @@ public class CompanyController {
     GroupService groupService;
     @Autowired
     StateService stateService;
+    @Autowired
+    FundService fundService;
 
     @GetMapping("/search")
     public String viewChartPage(@ModelAttribute("companyInfo") CompanyInfo info, Model model) {
@@ -44,7 +47,18 @@ public class CompanyController {
     @GetMapping("/dataSend/{code}")
     @ResponseBody
     public String setChartData(@PathVariable(name = "code") String code) {
-        CompanyInfo companyInfo = companyService.getCompanyByCode(code);
-        return code;
+        List<FundamentalState> lists = fundService.listAllByCode(code);
+        JsonArray jsonPbr = new JsonArray();
+        JsonArray jsonPer = new JsonArray();
+        JsonObject json = new JsonObject();
+
+        lists.forEach(list -> {
+            jsonPbr.add(list.getPbr());
+            jsonPer.add(list.getPer());
+        });
+
+        json.add("pbr",jsonPbr);
+        json.add("per", jsonPer);
+        return json.toString();
     }
 }

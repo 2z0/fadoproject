@@ -173,7 +173,9 @@
     $.ajax({
         url: "dataSend/"+test,
         success:function(result){
-            alert(result)
+            let myPbr = JSON.parse(result).pbr;
+            let myPer = JSON.parse(result).per;
+            drawLineChart(myPbr, myPer);
         }
     });
 
