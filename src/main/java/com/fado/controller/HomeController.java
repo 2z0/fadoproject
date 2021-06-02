@@ -27,8 +27,7 @@ public class HomeController {
     SigaService sigaService;
     @Autowired
     GroupService groupService;
-    @Autowired
-    TestService testService;
+
 
     @GetMapping("/")
     public String viewHomePage(Model model){
@@ -65,53 +64,9 @@ public class HomeController {
         return json.toString();
     }
 
-    @GetMapping("/group")
-    public String viewGroupPage(){
-        return "group";
-    }
-
-    @GetMapping("/search")
-    public String viewChartPage(@ModelAttribute("companyInfo")CompanyInfo info, Model model){
-        CompanyInfo companyInfo = companyService.getCompanyByName(info.getCompany());
-        model.addAttribute("companyInfo",companyInfo);
-        return "charts";
-    }
-
     @RequestMapping("/autoComplete")
     @ResponseBody
     public List<String> getCompanyNameList() {
         return companyService.getAllCompanyName();
-    }
-
-    //EXAMPLE
-    @RequestMapping("/list")
-    public String showCompanyChart(Model model){
-
-        List<String> groupNameList = groupService.listAllGroupName();
-        model.addAttribute("groupNameList",groupNameList);
-        return "list";
-    }
-
-    @RequestMapping("/test")
-    public String viewTestPage(){
-        return "test";
-    }
-
-    @RequestMapping("/chartdata")
-    @ResponseBody
-    public String getDataFromDB() {
-        List<TestEntity> testList = testService.listAll();
-        JsonArray jsonCompany = new JsonArray();
-        JsonArray jsonVolume = new JsonArray();
-
-        JsonObject json = new JsonObject();
-        testList.forEach(test -> {
-            jsonCompany.add(test.getCompany());
-            jsonVolume.add(test.getVolume());
-        });
-
-        json.add("cp",jsonCompany);
-        json.add("vm",jsonVolume);
-        return json.toString();
     }
 }

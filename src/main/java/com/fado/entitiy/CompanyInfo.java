@@ -26,10 +26,12 @@ public class CompanyInfo {
     private String company;
     @Column(name="corp_group")
     private String group;
-
-    public CompanyInfo(String code, String company,String group){
+    @Column(name="corp_code")
+    private String corp_code;
+    public CompanyInfo(String code, String company,String group,String corp_code){
         this.code = code;
         this.company = company;
         this.group = group;
+        this.corp_code=corp_code;
     }
 }
