@@ -47,18 +47,27 @@ public class CompanyController {
     @GetMapping("/dataSend/{code}")
     @ResponseBody
     public String setChartData(@PathVariable(name = "code") String code) {
-        List<FundamentalState> lists = fundService.listAllByCode(code);
-        JsonArray jsonPbr = new JsonArray();
-        JsonArray jsonPer = new JsonArray();
+        CompanyInfo info = companyService.getCompanyByCode(code);
         JsonObject json = new JsonObject();
 
-        lists.forEach(list -> {
-            jsonPbr.add(list.getPbr());
-            jsonPer.add(list.getPer());
+        //GET PBR, PER LINE CHART DATA
+        List<FundamentalState> perList = fundService.listAllByCode(code);
+        JsonArray jsonPbr = new JsonArray();
+        JsonArray jsonPer = new JsonArray();
+        perList.forEach(data -> {
+            jsonPbr.add(data.getPbr());
+            jsonPer.add(data.getPer());
         });
-
         json.add("pbr",jsonPbr);
         json.add("per", jsonPer);
+
+        //GET SPIDER WEB DATA
+        List<Double> ratioList = stateService.getSpyderWebData(info.getCorp_code());
+        JsonArray jsonSpiderData = new JsonArray();
+        for (Double data : ratioList) {
+            jsonSpiderData.add(data);
+        }
+        json.add("spiderData",jsonSpiderData);
         return json.toString();
     }
 }

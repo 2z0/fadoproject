@@ -14,7 +14,6 @@
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-
     <script src="https://code.highcharts.com/stock/highstock.js"></script>
     <script src="https://code.highcharts.com/stock/modules/data.js"></script>
     <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
@@ -92,18 +91,18 @@
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                PER/PBR/ROE Chart Example
+                                Bar Chart Example
                                 <a href="#" data-toggle="tooltip" data-placement="bottom" title="PER = 현재가 / EPS"><i
                                         class="fas fa-question-circle"></i></a>
                             </div>
-                            <div id="myLineChart"></div>
+                            <div id="myBarChart"></div>
                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                Spider Web Example
+                                기업 안정 지표
                             </div>
                             <div id="MySpiderWeb"></div>
                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
@@ -112,9 +111,9 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
-                        Bar Chart Example
+                        PER/PBR 차트
                     </div>
-                    <div id="myBarChart"></div>
+                    <div id="myLineChart"></div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
                 <div class="card mb-4">
@@ -130,7 +129,6 @@
                            class="news_tit" title="코로나에 매출 1兆클럽 줄었다…삼성전자, 20년 연속 부동의 1위">코로나에 매출 1兆클럽 줄었다…
                             <mark>삼성전자</mark>
                             , 20년 연속 부동의 1위</a>
-
                     </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
@@ -169,13 +167,17 @@
 <script src="/assets/demo/spider-web-demo.js"></script>
 <script src="/js/auto-complete.js"></script>
 <script th:inline="javascript" type="text/javascript">
-    var test = [[${companyInfo.code}]]
+
+    var code = [[${companyInfo.code}]]
+    var name = [[${companyInfo.company}]]
     $.ajax({
-        url: "dataSend/"+test,
+        url: "dataSend/"+code,
         success:function(result){
             let myPbr = JSON.parse(result).pbr;
             let myPer = JSON.parse(result).per;
+            let mySData = JSON.parse(result).spiderData;
             drawLineChart(myPbr, myPer);
+            drawSpiderWeb(name, mySData);
         }
     });
 
