@@ -113,7 +113,7 @@
                     <div class="card-header">
                         PER/PBR 차트
                     </div>
-                    <div id="myLineChart"></div>
+                    <div id="myTimeLineChart"></div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
                 <div class="card mb-4">
@@ -176,7 +176,7 @@
             let myPbr = JSON.parse(result).pbr;
             let myPer = JSON.parse(result).per;
             let mySData = JSON.parse(result).spiderData;
-            drawLineChart(myPbr, myPer);
+            drawTimeLineChart(myPbr);
             drawSpiderWeb(name, mySData);
         }
     });

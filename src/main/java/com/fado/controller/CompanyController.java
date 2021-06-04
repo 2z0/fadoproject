@@ -55,8 +55,10 @@ public class CompanyController {
         JsonArray jsonPbr = new JsonArray();
         JsonArray jsonPer = new JsonArray();
         perList.forEach(data -> {
-            jsonPbr.add(data.getPbr());
-            jsonPer.add(data.getPer());
+            JsonArray jsonPbrData = new JsonArray();
+            jsonPbrData.add(data.getDate().toString());
+            jsonPbrData.add(data.getPbr());
+            jsonPbr.add(jsonPbrData);
         });
         json.add("pbr",jsonPbr);
         json.add("per", jsonPer);

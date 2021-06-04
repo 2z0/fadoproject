@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -18,15 +19,19 @@ import javax.persistence.Table;
 @Table(name = "corp_fundamental_statement")
 public class FundamentalState {
     @Id
+    private int id;
     @Column(name="stock_code")
-    String code;
+    private String code;
+    @Column(name="date")
+    private Date date;
     @Column(name="per")
-    double per;
+    private double per;
     @Column(name="pbr")
-    double pbr;
+    private double pbr;
 
-    public FundamentalState(String code, int per, int pbr) {
+    public FundamentalState(String code, Date date, double per, double pbr) {
         this.code = code;
+        this.date = date;
         this.per = per;
         this.pbr = pbr;
     }

@@ -14,11 +14,15 @@
     <thead>
     <tr>
       <th>group</th>
+      <th>group</th>
+      <th>group</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each= "gnl : ${groupNameList}">
-      <td th:text="${gnl}">Code</td>
+    <tr th:each= "data : ${List}">
+      <td th:text="${data.code}">Code</td>
+      <td th:text="${data.date}">Code</td>
+      <td th:text="${data.pbr}">Code</td>
     </tr>
     </tbody>
   </table>

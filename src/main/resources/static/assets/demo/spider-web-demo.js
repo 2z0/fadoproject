@@ -37,9 +37,7 @@ function drawSpiderWeb(name, data){
         },
 
         legend: {
-            align: 'bottom',
-            verticalAlign: 'middle',
-            layout: 'vertical'
+            enabled: false
         },
 
         series: [{

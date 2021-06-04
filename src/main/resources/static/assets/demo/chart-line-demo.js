@@ -1,60 +1,57 @@
-function drawLineChart(myPbr, myPer) {
-    Highcharts.chart('myLineChart', {
-        colors: ["#e85a71", "#4ea1d3", "#454552", "#d8e9ef"
-        ],
+function drawTimeLineChart(data) {
+
+    Highcharts.chart('myTimeLineChart', {
+        chart: {
+            zoomType: 'x'
+        },
         title: {
             text: ''
         },
-
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'datetime'
+        },
         yAxis: {
             title: {
-                text: ''
+                text: 'Exchange rate'
             }
         },
-
-        xAxis: {
-            accessibility: {
-                rangeDescription: 'Range: 2010 to 2017'
-            }
-        },
-
         legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle'
+            enabled: false
         },
-
         plotOptions: {
-            series: {
-                label: {
-                    connectorAllowed: false
+            area: {
+                fillColor: {
+                    linearGradient: {
+                        x1: 0,
+                        y1: 0,
+                        x2: 0,
+                        y2: 1
+                    },
+                    stops: [
+                        [0, Highcharts.getOptions().colors[0]],
+                        [1, Highcharts.color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                    ]
                 },
-                pointStart: 2010
+                marker: {
+                    radius: 2
+                },
+                lineWidth: 1,
+                states: {
+                    hover: {
+                        lineWidth: 1
+                    }
+                },
+                threshold: null
             }
         },
 
         series: [{
-            name: 'PER',
-            data: myPer
-        }, {
+            type: 'line',
             name: 'PBR',
-            data: myPbr
-        }],
-
-        responsive: {
-            rules: [{
-                condition: {
-                    maxWidth: 500
-                },
-                chartOptions: {
-                    legend: {
-                        layout: 'horizontal',
-                        align: 'center',
-                        verticalAlign: 'bottom'
-                    }
-                }
-            }]
-        }
-
+            data: data
+        }]
     });
 }

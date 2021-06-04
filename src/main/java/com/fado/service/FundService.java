@@ -12,5 +12,5 @@ import java.util.List;
 public class FundService {
     @Autowired
     FundRepository repo;
-    public List<FundamentalState> listAllByCode(String code) {return repo.findAllByCode(code);}
+    public List<FundamentalState> listAllByCode(String code) {return repo.findByCode(code);}
 }

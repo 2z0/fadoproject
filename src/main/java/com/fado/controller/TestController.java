@@ -1,6 +1,8 @@
 package com.fado.controller;
 
+import com.fado.entitiy.FundamentalState;
 import com.fado.entitiy.TestEntity;
+import com.fado.service.FundService;
 import com.fado.service.GroupService;
 import com.fado.service.TestService;
 import com.google.gson.JsonArray;
@@ -19,12 +21,13 @@ public class TestController {
     TestService testService;
     @Autowired
     GroupService groupService;
-
+    @Autowired
+    FundService fundService;
     @RequestMapping("/list")
     public String showCompanyChart(Model model){
 
-        List<String> groupNameList = groupService.listAllGroupName();
-        model.addAttribute("groupNameList",groupNameList);
+        List<FundamentalState> List = fundService.listAllByCode("005930");
+        model.addAttribute("List",List);
         return "list";
     }
 
