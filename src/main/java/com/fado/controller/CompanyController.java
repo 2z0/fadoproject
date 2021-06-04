@@ -1,21 +1,16 @@
 package com.fado.controller;
 
 import com.fado.entitiy.CompanyInfo;
-import com.fado.entitiy.CompanyState;
 import com.fado.entitiy.FundamentalState;
-import com.fado.entitiy.TestEntity;
 import com.fado.service.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class CompanyController {

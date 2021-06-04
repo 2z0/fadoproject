@@ -80,7 +80,7 @@
                             class="fas fa-microchip"></i></a></h1>
                 <div class="card mb-4">
                     <div class="card-header">
-                        Candle Chart Example
+                        주가
                     </div>
                     <div id="myCandleChart" style="height: 400px; min-width: 310px"></div>
 
@@ -91,20 +91,22 @@
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                Bar Chart Example
-                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="PER = 현재가 / EPS"><i
-                                        class="fas fa-question-circle"></i></a>
+                                기업 성장성
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="회사의 규모나 경영성과가 전년에 비해 어느 정도 증가하였는가를 측정하는 지표">
+                                <i class="fas fa-question-circle"></i></a>
                             </div>
-                            <div id="myBarChart"></div>
+                            <div id="MySpiderWeb4Potentiality"></div>
                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="card mb-4">
                             <div class="card-header">
-                                기업 안정 지표
+                                기업 안정성
+                                <a href="#" data-toggle="tooltip" data-placement="bottom" title="회사가 어느 정도 안정되어 있는가를 측정하는 지표">
+                                <i class="fas fa-question-circle"></i></a>
                             </div>
-                            <div id="MySpiderWeb"></div>
+                            <div id="MySpiderWeb4Stability"></div>
                             <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                         </div>
                     </div>
@@ -114,22 +116,6 @@
                         PER/PBR 차트
                     </div>
                     <div id="myTimeLineChart"></div>
-                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-                </div>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        News Example
-                    </div>
-                    <div class="card-body">
-                        <a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=101&oid=215&aid=0000958569"
-                           target="_blank" title="투자자 40% 삼성전자 주주…&quot;배당,상승기대감 반영&quot;">투자자 40%
-                            <mark>삼성전자</mark>
-                            주주…"배당,상승기대감 반영"</a><br>
-                        <a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=101&oid=018&aid=0004931681"
-                           class="news_tit" title="코로나에 매출 1兆클럽 줄었다…삼성전자, 20년 연속 부동의 1위">코로나에 매출 1兆클럽 줄었다…
-                            <mark>삼성전자</mark>
-                            , 20년 연속 부동의 1위</a>
-                    </div>
                     <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
                 </div>
                 <div class="card mb-4">
@@ -163,8 +149,9 @@
 <script src="/assets/demo/chart-candle-demo.js"></script>
 <script src="/js/bar-chart.js"></script>
 <script src="/assets/demo/chart-stacked-bar-demo.js"></script>
-<script src="/assets/demo/chart-line-demo.js"></script>
-<script src="/assets/demo/spider-web-demo.js"></script>
+<script src="/js/chart-line-4perpbr.js"></script>
+<script src="/js/spider-web-4stability.js"></script>
+<script src="/js/spider-web-4potentiality.js"></script>
 <script src="/js/auto-complete.js"></script>
 <script th:inline="javascript" type="text/javascript">
 
@@ -176,8 +163,9 @@
             let myPbr = JSON.parse(result).pbr;
             let myPer = JSON.parse(result).per;
             let mySData = JSON.parse(result).spiderData;
-            drawTimeLineChart(myPbr);
-            drawSpiderWeb(name, mySData);
+            drawTimeLineChart(myPer,myPbr);
+            drawSpiderWeb4Stability(name, mySData);
+            drawSpiderWeb4Potentiality(name, mySData);
         }
     });
 

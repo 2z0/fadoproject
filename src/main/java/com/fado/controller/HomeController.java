@@ -2,11 +2,9 @@ package com.fado.controller;
 
 import com.fado.entitiy.CompanyInfo;
 import com.fado.entitiy.CompanySiga;
-import com.fado.entitiy.TestEntity;
 import com.fado.service.CompanyService;
 import com.fado.service.GroupService;
 import com.fado.service.SigaService;
-import com.fado.service.TestService;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;

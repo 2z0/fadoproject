@@ -1,4 +1,4 @@
-function drawTimeLineChart(data) {
+function drawTimeLineChart(per, pbr) {
 
     Highcharts.chart('myTimeLineChart', {
         chart: {
@@ -51,7 +51,11 @@ function drawTimeLineChart(data) {
         series: [{
             type: 'line',
             name: 'PBR',
-            data: data
+            data: pbr
+        },{
+            type: 'line',
+            name: 'PER',
+            data: per
         }]
     });
 }

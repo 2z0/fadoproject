@@ -9,7 +9,7 @@ Highcharts.getJSON('https://demo-live-data.highcharts.com/aapl-ohlc.json', funct
     },
     series: [{
       type: 'candlestick',
-      name: 'AAPL Stock Price',
+      name: 'Stock Price',
       data: data,
       dataGrouping: {
         units: [
